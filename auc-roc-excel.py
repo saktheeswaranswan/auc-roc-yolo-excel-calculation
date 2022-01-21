@@ -114,5 +114,10 @@ for image in images:
         w = box[2]
         h = box[3]
         draw_pred(img, class_ids[i], confidences[i], round(x), round(y), round(x + w), round(y + h))
-
+# Put efficiency information.
+    t, _ = net.getPerfProfile()
+    label = 'Inference time: %.2f ms' % (t * 1000.0 / cv2.getTickFrequency())
+    cv2.putText(image, label, (0, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0))
+    
+    cv2.imshow(window_title, image)
 
